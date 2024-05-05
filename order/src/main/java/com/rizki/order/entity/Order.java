@@ -17,19 +17,19 @@ import jakarta.persistence.Table;
 @Entity
 @Table (name = "t_order")
 public class Order {
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long produkId;
-    private int jumlah;
+    private Integer jumlah;
     private String tanggal;
     private String status;
     private double total;
-
-    public Order() {
+    
+    public Order(){
     }
-
-    public Order(Long id, Long produkId, int jumlah, String tanggal, String status, double total) {
+    
+    public Order(Long id, Long produkId, Integer jumlah, String tanggal, String status, double total){
         this.id = id;
         this.produkId = produkId;
         this.jumlah = jumlah;
@@ -42,53 +42,54 @@ public class Order {
         return id;
     }
 
-    public Long getProdukId() {
-        return produkId;
-    }
-
-    public int getJumlah() {
-        return jumlah;
-    }
-
-    public String getTanggal() {
-        return tanggal;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getProdukId() {
+        return produkId;
     }
 
     public void setProdukId(Long produkId) {
         this.produkId = produkId;
     }
 
-    public void setJumlah(int jumlah) {
+    public Integer getJumlah() {
+        return jumlah;
+    }
+
+    public void setJumlah(Integer jumlah) {
         this.jumlah = jumlah;
+    }
+
+    public String getTanggal() {
+        return tanggal;
     }
 
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public double getTotal() {
+        return total;
     }
 
     public void setTotal(double total) {
         this.total = total;
     }
-    
+
     @Override
     public String toString() {
         return "Order{" + "id=" + id + ", produkId=" + produkId + ", jumlah=" + jumlah + ", tanggal=" + tanggal + ", status=" + status + ", total=" + total + '}';
     }
+    
     
 }

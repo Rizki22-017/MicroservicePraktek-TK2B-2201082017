@@ -1,0 +1,23 @@
+ambil dependecies ->
+
+eurika discovery client
+
+klik explore...
+pilih code -> dependecy -> group id. spring.framework.clloud dan artifact.id spring-cloud-starter-netflix-client
+
+copy ke produk dan letakkan di pom -> letakkan di dalam dependecies paling atas.
+
+selanjutnya build with dependencies.
+
+setelah sukses, eurika client akan masuk ke dalam dependecies kita. 
+
+di productApplication, tambahkan @EnableDiscoeryCLient dibawah @SpringBootApplication 
+
+--------------
+Selanjutnya di properties, tambahkan di paling bawah
+
+eurika.client.serviceUrl.defaultZone=http://localhost:8761/eureka/
+
+-------------
+
+

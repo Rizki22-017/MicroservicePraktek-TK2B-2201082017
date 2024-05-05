@@ -13,7 +13,7 @@ import com.rizki.order.entity.Order;
 public class ResponseTemplate {
     Order order;
     Produk produk;
-
+    
     public ResponseTemplate() {
     }
 
@@ -37,4 +37,12 @@ public class ResponseTemplate {
     public void setProduk(Produk produk) {
         this.produk = produk;
     }
+
+    @Override
+    public String toString() {
+        return "ResponseTemplate{" + "order=" + order + ", produk=" + produk + '}';
+    }
+
+    
+    
 }

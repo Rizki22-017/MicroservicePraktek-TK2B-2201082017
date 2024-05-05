@@ -35,26 +35,26 @@ public class ProdukController {
     }
     
     @PostMapping
-    public void insert(@RequestBody Produk produk){
+    public void insert (@RequestBody Produk produk){
         produkService.insert(produk);
     }
     
-    @DeleteMapping(path = "{produkId}")
-    public void delete(@PathVariable("produkId") Long produkId){
-        produkService.delete(produkId);
+    @DeleteMapping(path = "{id}")
+    public void delete(@PathVariable("id") Long Id){
+        produkService.delete(Id);
     }
     
-    @PutMapping(path = "{produkId}")
-    public void update (@PathVariable("produkId") Long produkId,
-            @RequestParam(required = false) String kode,
-            @RequestParam(required = false) String nama,
-            @RequestParam(required = false) String satuan,
-            @RequestParam(required = false) double harga) {
-        produkService.update(produkId, kode, nama, satuan, harga);
+    @PutMapping(path = "{id}")
+    public void update (@PathVariable("id") Long id,
+        @RequestParam(required = false) String kode,
+        @RequestParam(required = false) String nama,
+        @RequestParam(required = false) String stok,
+        @RequestParam(required = false) double harga) {
+        produkService.update(id, kode, nama, stok, harga);
     }
     
-    @GetMapping(path = "{produkId}")
-    public Produk getProdukById(@PathVariable("produkId") Long produkId){
-        return produkService.getProdukById(produkId);
+    @GetMapping(path = "{id}")
+    public Produk getProductById(@PathVariable("id") Long id){
+        return produkService.getProdukById(id);
     }
 }

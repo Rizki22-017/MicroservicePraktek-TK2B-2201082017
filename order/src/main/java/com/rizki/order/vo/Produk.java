@@ -11,64 +11,54 @@ package com.rizki.order.vo;
 public class Produk {
     private Long id;
     private String kode;
-    private String nama;
-    private String satuan;
-    private double harga;
-
-    public Produk() {
+    private long harga;
+    private long stok;
+    
+    public Produk(){
     }
 
-    public Produk(Long id, String kode, String nama, String satuan, double harga) {
+    public Produk(Long id, String kode, long harga, long stok) {
         this.id = id;
         this.kode = kode;
-        this.nama = nama;
-        this.satuan = satuan;
         this.harga = harga;
+        this.stok = stok;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getKode() {
-        return kode;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public String getSatuan() {
-        return satuan;
-    }
-
-    public double getHarga() {
-        return harga;
-    }
-    
-    
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getKode() {
+        return kode;
     }
 
     public void setKode(String kode) {
         this.kode = kode;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public long getHarga() {
+        return harga;
     }
 
-    public void setSatuan(String satuan) {
-        this.satuan = satuan;
-    }
-    
-    public void setHarga(double harga) {
+    public void setHarga(long harga) {
         this.harga = harga;
     }
 
+    public long getStok() {
+        return stok;
+    }
+
+    public void setStok(long stok) {
+        this.stok = stok;
+    }
+    
     @Override
     public String toString() {
-        return "Produk{" + "id=" + id + ", kode=" + kode + ", nama=" + nama + ", satuan=" + satuan + ", harga=" + harga + '}';
+        return super.toString();
     }
+    
 }

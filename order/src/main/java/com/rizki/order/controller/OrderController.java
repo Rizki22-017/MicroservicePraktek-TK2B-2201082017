@@ -27,41 +27,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/order")
 public class OrderController {
-    
+
     @Autowired
     private OrderService orderService;
     
     @GetMapping
-    public List <Order> getAll(){
+    public List<Order>getAll(){
         return orderService.getAll();
+        
     }
     
-    @PostMapping
-    public void insert(@RequestBody Order order){
-        orderService.insert(order);
-    }
-    
-    @GetMapping(path = "{id}")
+    @GetMapping(path="{id}")
     public Order getOrderById(@PathVariable("id")Long id){
         return orderService.getOrderById(id);
     }
     
-    @GetMapping(path = "/produk/{id}")
-    public List<ResponseTemplate> getOrderWithProdukById(@PathVariable("id") Long id) {
-        return orderService.getOrderWithProdukById(id);
-    }
     
-    @DeleteMapping(path = "{id}")
-    public void delete(@PathVariable("id") Long id){
-        orderService.delete(id);
-    }
-    
+
     @PutMapping(path = "{id}")
-    public void update(@PathVariable("id")Long id,
-            @RequestParam(required = false) Integer jumlah,
+    public void updateOrder(@PathVariable("id") Long id,
+            @RequestParam(required = false) int jumlah,
             @RequestParam(required = false) String tanggal,
             @RequestParam(required = false) String status
-    ){
+    ) {
         orderService.update(id, jumlah, tanggal, status);
+    }
+    
+    @GetMapping(path = "/product/{id}")
+    public List<ResponseTemplate> getOrderWithProdukById(
+            @PathVariable("id") Long id){
+        return orderService.getOrderWithProdukById(id);
     }
 }

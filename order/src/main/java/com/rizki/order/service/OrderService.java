@@ -22,20 +22,14 @@ import org.springframework.web.client.RestTemplate;
  */
 @Service
 public class OrderService {
-    
     @Autowired
     private OrderRepository orderRepository;
     
     @Autowired
     private RestTemplate restTemplate;
-
     
     public List<Order> getAll(){
         return orderRepository.findAll();
-    }
-    
-    public Order getOrderById(Long id){
-        return orderRepository.findById(id).get();
     }
     
     public void insert(Order order){
@@ -43,15 +37,15 @@ public class OrderService {
     }
     
     @Transactional
-    public void update (Long orderId, Integer jumlah, String tanggal, String status){
+    public void update(Long orderId,  Integer jumlah, String tanggal, String status){
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(
-                        ()->new IllegalStateException("Order Tidak Ada")
+                        () -> new IllegalStateException("Produk tidak ada")
                 );
-        
-        if(jumlah != null) {
+         if (jumlah != null) {
             order.setJumlah(jumlah);
         }
+
         if(tanggal != null && tanggal.length()>0
                 && !Objects.equals(order.getTanggal(), tanggal)){
             order.setTanggal(tanggal);
@@ -59,17 +53,17 @@ public class OrderService {
         if(status != null && status.length()>0
                 && !Objects.equals(order.getStatus(), status)){
             order.setStatus(status);
-        }
-    }
-    
-    public void delete(Long id){
-        orderRepository.deleteById(id);
-    }
-        
-    public List<ResponseTemplate> getOrderWithProdukById(Long id){
+        }       
+   }
+   
+   public Order getOrderById(Long id){
+       return orderRepository.findById(id).get();
+   }
+   
+   public List<ResponseTemplate> getOrderWithProdukById(Long id){
         List<ResponseTemplate> responseList = new ArrayList<>();
         Order order = getOrderById(id);
-        Produk produk = restTemplate.getForObject("http://localhost:9001/api/v1/produk/"
+        Produk produk = restTemplate.getForObject("http://localhost:9001/api/v1/product/"
                 + order.getProdukId(), Produk.class);
         ResponseTemplate vo = new ResponseTemplate();
         vo.setOrder(order);
@@ -77,5 +71,6 @@ public class OrderService {
         responseList.add(vo);
         return responseList;
     }
-
+    
 }
+
