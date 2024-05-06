@@ -49,7 +49,7 @@ public class ProdukController {
         @RequestParam(required = false) String kode,
         @RequestParam(required = false) String nama,
         @RequestParam(required = false) String stok,
-        @RequestParam(required = false) double harga) {
+        @RequestParam(required = false) Double harga) {
         produkService.update(id, kode, nama, stok, harga);
     }
     

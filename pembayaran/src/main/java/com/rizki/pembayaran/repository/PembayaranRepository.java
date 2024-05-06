@@ -4,10 +4,13 @@
  */
 package com.rizki.pembayaran.repository;
 
+import com.rizki.pembayaran.entity.Pembayaran;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  *
  * @author ASUS
  */
-public interface PembayaranRepository {
+public interface PembayaranRepository extends JpaRepository<Pembayaran, Long> {
     
 }
