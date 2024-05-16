@@ -42,7 +42,15 @@ public class OrderController {
         return orderService.getOrderById(id);
     }
     
+    @PostMapping
+    public void insert (@RequestBody Order order){
+        orderService.insert(order);
+    }
     
+    @DeleteMapping(path = "{id}")
+    public void delete(@PathVariable("id") Long Id){
+        orderService.delete(Id);
+    }
 
     @PutMapping(path = "{id}")
     public void updateOrder(@PathVariable("id") Long id,

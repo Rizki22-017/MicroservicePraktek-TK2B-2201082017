@@ -12,6 +12,7 @@ import com.rizki.pembayaran.vo.ResponseTemplate;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -56,5 +57,36 @@ public class PembayaranService {
         vo.setPembayaran(pembayaran);
         responseList.add(vo);
         return responseList;
+    }
+     
+    @Transactional
+    public void update (Long id, Long order_Id, String metode_pembayaran, Integer ref_number, String tgl_pembayaran, String status, Double total){
+        Pembayaran pembayaran = pembayaranRepository.findById(order_Id)
+                .orElseThrow(
+                        ()->new IllegalStateException("Pembayaran Tidak ada")
+                );
+        if(metode_pembayaran != null && metode_pembayaran.length()>0
+                && !Objects.equals(pembayaran.getMetode_pembayaran(), metode_pembayaran)){
+            pembayaran.setMetode_pembayaran(metode_pembayaran);
+        }
+        if (ref_number != null) {
+            pembayaran.setRef_number(ref_number);
+        }
+        if(tgl_pembayaran != null && tgl_pembayaran.length()>0
+                && !Objects.equals(pembayaran.getTgl_pembayaran(), tgl_pembayaran)){
+            pembayaran.setTgl_pembayaran(tgl_pembayaran);
+        }
+        if(status != null && status.length()>0
+                && !Objects.equals(pembayaran.getStatus(), status)){
+            pembayaran.setStatus(status);
+        }
+        if(total != null
+                && !Objects.equals(pembayaran.getTotal(), total)){
+            pembayaran.setTotal(total);
+        }
+    } 
+     
+    public void delete(Long produkId){
+        pembayaranRepository.deleteById(produkId);
     }
 }

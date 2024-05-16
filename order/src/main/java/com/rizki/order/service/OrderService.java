@@ -71,6 +71,10 @@ public class OrderService {
         responseList.add(vo);
         return responseList;
     }
+   
+   public void delete(Long produkId){
+        orderRepository.deleteById(produkId);
+    }
     
 }
 
